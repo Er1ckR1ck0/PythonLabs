@@ -78,24 +78,50 @@ def number2():
             tuple_list = set([item for item in tuple_list if type(item) != list])
             print("> Symmetric difference of M1 and M2:", new_tuple.symmetric_difference(tuple_list)) 
     def creating_dictionary(tuple_list):
-        dict = {}
+        dicts = {}
         for i in range(0, len(tuple_list)):
-            dict.update({i:tuple_list[i]})
+            dicts.update({i:tuple_list[i]})
+            print(dicts)
             if i % 2 == 1:
-                print(dict[i])   
-# def main():
-#     input_number = input("> Enter a number of task: ")
-#     def check(input_number):
-#         while not input_number.isdigit() or int(input_number) > 3:
-#             input_number = input("> Plese, rewrite your number: ")
-#         return input_number
+                print(dicts[i])   
+    creating_dictionary
+number2()
 
-#     input_number = int(check(input_number))
+def number3():
+
+    enter = (input()
+    print(
+        """
+        Меню программы
+        R. Площадь прямоугольника
+        T. Площадь прямоугольного треугольника
+        M. Площадь многоугольника
+        E. Exit
+        """
+    )
+    match enter:
+        case "R":
+            
+
+
+def main():
+    input_number = input("> Enter a number of task: ")
+    def check(input_number):
+        while not input_number.isdigit() or int(input_number) > 3:
+            input_number = input("> Plese, rewrite your number: ")
+        return input_number
+
+    input_number = int(check(input_number))
     
-#     match input_number:
-#         case 1:
-#             print(number1())
+    match input_number:
+        case 1:
+            print(number1())
+        case 2:
+            number2()
+        case 3:
+            number3()
+        case _:
+            print("Ты лудик")
     
-    
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
