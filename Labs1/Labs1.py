@@ -1,6 +1,7 @@
 import math
 from ast import literal_eval
 import time
+
 def number1():
     a = input("> Enter a number: ")
     b = input("> Enter a number: ")
