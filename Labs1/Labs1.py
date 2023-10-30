@@ -2,12 +2,12 @@ import math
 from ast import literal_eval
 import time
 
-def number1():
-    a = input("> Enter a number: ")
-    b = input("> Enter a number: ")
-    n = input("> Enter a number: ")
-    x = input("> Enter a number: ")
-    def check(a, b, n, x):
+def check(input_number):
+        while not input_number.isdigit() or int(input_number) > 3:
+            input_number = input("> Plese, rewrite your number: ")
+        return input_number
+
+def check(a, b, n, x):
         while a.isdigit() and b.isdigit() and n.isdigit() and x.isdigit() is False:
             if not a.isdigit():
                 a = input("> Enter a number for a: ")
@@ -18,6 +18,12 @@ def number1():
             if not x.isdigit():
                 x = input("> Enter a number for n: ")
         return int(a), int(b), int(n), int(x)
+def number1():
+    a = input("> Enter a number: ")
+    b = input("> Enter a number: ")
+    n = input("> Enter a number: ")
+    x = input("> Enter a number: ")
+    
     a,b,n,x = check(a, b, n, x)[0], check(a, b, n, x)[1], check(a, b, n, x)[2], check(a, b, n, x)[3]
     
     function = (5*a**(n*x) / n+x ) - math.sqrt(abs(math.cos(x**(3**n))))
@@ -90,7 +96,7 @@ number2()
 
 def number3():
 
-    enter = (input()
+    enter = input()
     print(
         """
         Меню программы
@@ -102,16 +108,9 @@ def number3():
     )
     match enter:
         case "R":
+            print()
             
-
-
 def main():
-    input_number = input("> Enter a number of task: ")
-    def check(input_number):
-        while not input_number.isdigit() or int(input_number) > 3:
-            input_number = input("> Plese, rewrite your number: ")
-        return input_number
-
     input_number = int(check(input_number))
     
     match input_number:
@@ -122,7 +121,7 @@ def main():
         case 3:
             number3()
         case _:
-            print("Ты лудик")
+            print("Поки споки")
     
 if __name__ == "__main__":
     main()
