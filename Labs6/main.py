@@ -12,5 +12,6 @@ def hello_world(*content):
         user = "Guest"
         return render_template("main.html", content = "")
 
-
+if __name__ == "__main__":
+    app.run(debug=True)
 
