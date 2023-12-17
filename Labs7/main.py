@@ -1,5 +1,5 @@
 import flet as ft
-from sql_def import get_film_by_name, get_films, get_films_money, add_films, delete_films
+from sql_def import *
 import logging
 from request import url_film
 
@@ -17,9 +17,22 @@ def main(page: ft.Page):
         )
         dlg.open = False
         page.update()
+    def button_apply_info(e):
+        add_info_DB(delete_film.value, country.value, cash.value)
+        film = ft.Dropdown(
+            width=300,
+            options=[ft.dropdown.Option(get_film_by_name()[i]) for i in range(0, len(get_film_by_name()) )],
+        )
+        add_info.open = False
+        page.update()
     def add_button_clicked(e):
         page.dialog = dlg
         dlg.open = True
+        
+        page.update()
+    def add_info_button_clicked(e):
+        page.dialog = add_info
+        add_info.open = True
         
         page.update()
     def delete_button_clicked(e):
@@ -30,7 +43,17 @@ def main(page: ft.Page):
 
     def apply_deletes(e):
         delete_films(delete_film.value)
+        film = ft.Dropdown(
+            width=300,
+            options=[ft.dropdown.Option(get_film_by_name()[i]) for i in range(0, len(get_film_by_name()) )],
+        )
+        film.update()
         dlg_delete.open = False
+        page.update()
+    def delete_info_apply(e):
+        delete_info_DB(delete_film.value)
+    
+        add_info.open = False
         page.update()
 
     def show_money(e):
@@ -64,6 +87,7 @@ def main(page: ft.Page):
         color=ft.colors.WHITE,
     )
     add_button = ft.ElevatedButton(text="+", on_click=add_button_clicked, color=ft.colors.AMBER, width=64, height=64, scale=ft.Scale(0.75))
+    add_info_button = ft.ElevatedButton(text='Добавить сборы', on_click=add_info_button_clicked)
     delete_button = ft.ElevatedButton(text="-", on_click=delete_button_clicked, color=ft.colors.AMBER, width=64, height=64, scale=ft.Scale(0.75))
     submit_btn = ft.ElevatedButton(text="Принять", on_click=button_clicked)
     film = ft.Dropdown(
@@ -76,6 +100,7 @@ def main(page: ft.Page):
     category = ft.TextField(label="Категория", width=500)
     director = ft.TextField(label="Режиссер", width=500)
     country = ft.TextField(label="Страна", width=500)
+    cash = ft.TextField(label="Кассовые сборы", width=500)
     delete_film = ft.Dropdown(
         width=300,
         options=[ft.dropdown.Option(get_film_by_name()[i]) for i in range(0, len(get_film_by_name()))],
@@ -83,11 +108,16 @@ def main(page: ft.Page):
     dlg_delete = ft.AlertDialog(title= ft.Text("Удалить запись"), content=ft.Column(width=500,controls=[delete_film,
         ft.ElevatedButton(text="Удалить", on_click=apply_deletes)]),
         on_dismiss=lambda e: print("Не получилось создать запись"))
+    add_info = ft.AlertDialog(
+        title=ft.Text("Добавить запись"), content=ft.Column(width=500,controls=[delete_film, country, cash,
+                    ft.Row(controls=[ft.ElevatedButton(text="Создать", on_click=button_apply_info),
+                    ft.ElevatedButton(text="Удалить", on_click=delete_info_apply, color=ft.colors.RED)])]), on_dismiss=lambda e: print("Не получилось создать запись")
+    )
     dlg = ft.AlertDialog(
         title=ft.Text("Добавить запись"), content=ft.Column(width=500,controls=[name, year, rating, category, director, country,
                     ft.Row(controls=[ft.ElevatedButton(text="Создать", on_click=button_apply),
                     ft.ElevatedButton(text="Отмена", on_click=close_dlg, color=ft.colors.RED)])]), on_dismiss=lambda e: print("Не получилось создать запись")
     )
-    page.add(ft.Row(controls=[film, add_button, delete_button]), ft.Row(controls=[submit_btn, show_money_btn]),  output_text, link_text)
+    page.add(ft.Row(controls=[film, add_button, add_info_button, delete_button]), ft.Row(controls=[submit_btn, show_money_btn]),  output_text, link_text)
 
 ft.app(target=main)

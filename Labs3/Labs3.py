@@ -39,10 +39,11 @@ def check(input_number):
 
 def main():
     list_objects = []
-    input_number = int(check(input("> Plese, write your number: ")))
+    
     # match input_number:
     #     case 
     while input_number != 0:
+        input_number = int(check(input("> Plese, write your number: ")))
         if input_number == 1:
             list_objects.append(FilmManagment().add_films())
             print(list_objects)

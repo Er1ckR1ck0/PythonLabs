@@ -16,8 +16,9 @@ cur.execute("""
 
 cur.execute("""
     CREATE TABLE if not exists Money (
-        id INTEGER PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         id_movie INTEGER,
+        movie TEXT,
         country TEXT,
         cash TEXT
     )""")
@@ -46,50 +47,50 @@ cur.execute("""
 
 #Сборы в странах
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (1, 1, 'USA', '100000$'))
+            Insert into Money (id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (1,"The Godfather", 'USA', '100000$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (2, 1, 'UK', '231349$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (1,"The Godfather", 'UK', '231349$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (3, 1,'Russia', '123899$'))
+            Insert into Money (id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (1,"The Godfather",'Russia', '123899$'))
 
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (4, 2, 'USA', '789920$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (2,"The Godfather: Part II", 'USA', '789920$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (5, 2, 'UK', '139800$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (2,"The Godfather: Part II", 'UK', '139800$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (6, 2,'Russia', '90421$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (2, "The Godfather: Part II",'Russia', '90421$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (7, 3, 'USA', '2930000$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (3, "The Dark Knight", 'USA', '2930000$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (8, 3, 'UK', '213000$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (3, "The Dark Knight", 'UK', '213000$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (9, 3,'Russia', '188732$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (3, "The Dark Knight",'Russia', '188732$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (10, 4, 'USA', '1000000$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (4, "Pulp Fiction", 'USA', '1000000$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (11, 4, 'UK', '489992$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (4, "Pulp Fiction", 'UK', '489992$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (12, 4,'Russia', '299102$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (4, "Pulp Fiction",'Russia', '299102$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (13, 5, 'USA', '2000312$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (5, "Kill Bill", 'USA', '2000312$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (14, 5, 'UK', '758834$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (5, "Kill Bill", 'UK', '758834$'))
 cur.execute("""
-            Insert into Money (id, id_movie, country, cash)
-            Values(?, ?, ?, ?);""", (15, 5,'Russia', '327775$'))
+            Insert into Money ( id_movie, movie, country, cash)
+            Values(?, ?, ?, ?);""", (5, "Kill Bill",'Russia', '327775$'))
 
 con.commit()

@@ -2,7 +2,7 @@ import math
 from ast import literal_eval
 import time
 
-def check(input_number):
+def check_input(input_number):
         while not input_number.isdigit() or int(input_number) > 3:
             input_number = input("> Plese, rewrite your number: ")
         return input_number
@@ -43,12 +43,12 @@ def number2():
         print("> Lenth of the elements is ", len(tuple_list), end="\n\n")
         print(str(tuple_list)[1:-1])
         for i in range(0, len(tuple_list)):
-            print(" "+ " "*(len(str(tuple_list[i]))//2) + str(i+1) + " "*(len(str(tuple_list[i]))//2), end=" ")
+            print(" "+ " "*(len(str(tuple_list[i]))//2) + str(i) + " "*(len(str(tuple_list[i]))//2), end=" ")
             if i == len(tuple_list)-1:
                 print("\n")
         input_number = input("> Enter a number of task: ")
-        print(f"> Element {input_number} ({tuple_list[int(input_number)-1]}) deleted")
-        tuple_list = [i for i in tuple_list if i != tuple_list[int(input_number)-1] ]
+        print(f"> Element {input_number} ({tuple_list[int(input_number)]}) deleted")
+        tuple_list = [i for i in tuple_list if i != tuple_list[int(input_number)] ]
         print(f"> New tuple: {list(tuple_list)}")
 
     def create_float_tuple(tuple_list):
@@ -91,8 +91,16 @@ def number2():
             print(dicts)
             if i % 2 == 1:
                 print(dicts[i])   
-    creating_dictionary
-number2()
+    input_number = int(check_input(input("Введите пункт меню")))
+    match input_number:
+        case 1: print_tuple(tuple_list)
+        case 2: delete_tuple_element(tuple_list)
+        case 3: create_float_tuple(tuple_list)
+        case 4: find_multiply(tuple_list)
+        case 5: find_word(tuple_list)
+        case 6: symmetric_difference(tuple_list)
+        case 7: creating_dictionary(tuple_list)
+        case _: print("Не знаю о чём вы, я сваливаю")
 
 def number3():
 
@@ -102,17 +110,35 @@ def number3():
         Меню программы
         R. Площадь прямоугольника
         T. Площадь прямоугольного треугольника
-        M. Площадь многоугольника
+        M. Площадь правильного многоугольника
         E. Exit
         """
     )
     match enter:
         case "R":
-            print()
+            a = int(input("Введите сторону а прямоугольника"))
+            b = int(input("Введите сторону b прямоугольника"))
+            print("Площадь прямоугольника:", a*b)
+        case "T":
+            a = int(input("Введите сторону а треугольника"))
+            b = int(input("Введите сторону b треугольника"))
+            print("Площадь прямоугольника:", a*b/2)
+        case "M":
+            a = int(input("Введите сторону а треугольника"))
+            n = int(input("Введите сколичество углов"))
+            print("Площадь многоугольника: ", (n*a**2)/4*math.tan(math.degrees(360)/2*n))
             
 def main():
-    input_number = int(check(input_number))
-    
+    input_number = int(check_input(input("Введите пункт меню")))
+    # print(
+    #     """
+    #     Меню программы
+    #     R. Площадь прямоугольника
+    #     T. Площадь прямоугольного треугольника
+    #     M. Площадь многоугольника
+    #     E. Exit
+    #     """
+    # )
     match input_number:
         case 1:
             print(number1())
